@@ -20,7 +20,7 @@ import { createAccessRoleMethods, type AccessRoleMethods } from './accessRole';
 import { createUserGroupMethods, type UserGroupMethods } from './userGroup';
 import { createAclEntryMethods, permissionBitSupersets, type AclEntryMethods } from './aclEntry';
 import { createSystemGrantMethods, type SystemGrantMethods } from './systemGrant';
-import { createAuditLogMethods, type AuditLogMethods } from './auditLog';
+import { createAuditLogMethods, MAX_AUDIT_LOG_LIMIT, type AuditLogMethods } from './auditLog';
 import { createShareMethods, type ShareMethods } from './share';
 /* Tier 1 — Simple CRUD */
 import { createActionMethods, type ActionMethods } from './action';
@@ -67,6 +67,7 @@ import { createConfigMethods, type ConfigMethods } from './config';
 export { RoleConflictError, DEFAULT_REFRESH_TOKEN_EXPIRY, DEFAULT_SESSION_EXPIRY };
 export { tokenValues, cacheTokenValues, premiumTokenValues, defaultRate };
 export { permissionBitSupersets };
+export { MAX_AUDIT_LOG_LIMIT };
 
 export type AllMethods = UserMethods &
   SessionMethods &
