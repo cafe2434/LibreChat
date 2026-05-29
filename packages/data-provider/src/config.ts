@@ -397,6 +397,13 @@ export const baseEndpointSchema = z.object({
     .optional(),
   titleEndpoint: z.string().optional(),
   titlePromptTemplate: z.string().optional(),
+  /**
+   * When conversation titles are generated. `immediate` (default) generates the
+   * title as soon as the request is made, in parallel with the response, from the
+   * user's first message. `final` defers generation until the full response
+   * completes (legacy behavior).
+   */
+  titleTiming: z.union([z.literal('immediate'), z.literal('final')]).optional(),
   /** Maximum characters allowed in a single tool result before truncation. */
   maxToolResultChars: z.number().positive().optional(),
 });
@@ -1097,6 +1104,10 @@ export type TStartupConfig = {
   modelDescriptions?: Record<string, Record<string, string>>;
   sharedLinksEnabled: boolean;
   publicSharedLinksEnabled: boolean;
+  /** Effective default timing for when conversation titles become fetchable.
+   * `immediate` = fetch in parallel with the active stream (default);
+   * `final` = fetch only after the stream completes (legacy). */
+  titleGenerationTiming?: 'immediate' | 'final';
   analyticsGtmId?: string;
   bundlerURL?: string;
   staticBundlerURL?: string;

@@ -218,6 +218,7 @@ router.get('/', async function (req, res) {
       ...sharedPayload,
       socialLogins: appConfig?.registration?.socialLogins ?? defaultSocialLogins,
       interface: appConfig?.interfaceConfig,
+      titleGenerationTiming: appConfig?.endpoints?.all?.titleTiming ?? 'immediate',
       turnstile: appConfig?.turnstileConfig,
       modelSpecs: sanitizeModelSpecs(appConfig?.modelSpecs),
       balance: balanceConfig,
