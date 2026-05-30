@@ -67,6 +67,24 @@ services:
       - vectordb
     env_file:
       - .env
+  
+  LibreChat:
+    # Chromiumを使うために追加
+    cap_add:
+      - SYS_ADMIN
+    volumes:
+      - ./librechat.yaml:/app/librechat.yaml
+      - ./workspace:/app/workspace  # ← 作業フォルダ
+      - ./workspace:/app/repo       # ← Gitリポジトリ置き場
+
+  # ↓ Puppeteer用の専用コンテナを追加
+  puppeteer-mcp:
+    image: ghcr.io/modelcontextprotocol/server-puppeteer:latest
+    ports:
+      - "3100:3100"
+    cap_add:
+      - SYS_ADMIN
 
 volumes:
   pgdata2:
+
